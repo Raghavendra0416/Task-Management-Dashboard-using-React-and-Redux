@@ -1,7 +1,7 @@
 import tasksImg from '../assets/tasksImg.svg'
 import '../CSS/NavStyle.css'
 
-export function NavBar() {
+export default function NavBar() {
     return (
         <div id="NavBar">
             <div>

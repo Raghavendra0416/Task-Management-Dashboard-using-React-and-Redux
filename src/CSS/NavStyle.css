@@ -7,6 +7,7 @@
 #NavBar {
     display: flex;
     border-bottom: 0.01rem solid black;
+    background-color: white;
 }
 
 #logo {
