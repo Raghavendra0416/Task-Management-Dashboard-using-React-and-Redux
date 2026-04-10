@@ -1,6 +1,7 @@
 import './CSS/App.css';
 import NavBar from './Components/NavBar';
 import Card from './Components/Card'
+import AddListItem from './Components/AddListItem';
 
 function App() {
 
