@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#NavBar {
+    display: flex;
+    border-bottom: 0.01rem solid black;
+    background-color: white;
+}
+
+#logo {
+    margin-top: 0.3em;
+    margin-left: 1.3rem;
+    width: 30px;
+    height: 60px;
+    display: block;
+}
+
+#NavBar h3 {
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+    margin-left: 0.5rem;
+}
+
+#NavBar p {
+    margin-top: 0;
+    margin-left: 1rem;
+    color: rgb(91, 95, 96);
+    margin-bottom: 0.7rem;
+}
