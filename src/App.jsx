@@ -1,7 +1,8 @@
 import './CSS/App.css';
 import NavBar from './Components/NavBar';
 import Card from './Components/Card'
-import AddListItem from './Components/AddListItem';
+import NewTask from './Components/NewTask';
+import Rough from './Components/Rough';
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
       <NavBar />
       <div id="main-style">
         <Card />
+        <NewTask />
       </div>
     </div>
 
