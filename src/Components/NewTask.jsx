@@ -1,8 +1,25 @@
+import { useDispatch } from "react-redux";
+import { addItem } from "./taskSlice";
+
 export default function NewTask() {
     const click = true;
+    const dispatch = useDispatch();
 
-    function handleClick() {
+    function handleClick(e) {
+        e.preventDefault();
+        const taskData = {
+            title: e.target.title.value,
+            description: e.target.description.value,
+            status: e.target.status.value,
+            priority: e.target.priority.value,
+            date: e.target.date.value
+        };
 
+        console.log("event: ", e);
+        console.log("task: ", e.target.title.value);
+        console.log("taskData: ", taskData);
+
+        dispatch(addItem(taskData));
     }
     return (
         <>
@@ -19,13 +36,13 @@ export default function NewTask() {
                             {/* Title || Description */}
                             <div className="flex flex-col gap-1">
                                 <label htmlFor="title" className="font-semibold text-sm">Title *</label>
-                                <input type="text" id="title" placeholder="Enter Task Title"
+                                <input type="text" id="title" placeholder="Enter Task Title" name="title" required
                                     className="p-3 rounded-lg bg-gray-100 border border-gray-200 outline-none" />
                             </div>
 
                             <div className="flex flex-col gap-1">
                                 <label htmlFor="description" className="font-semibold text-sm">Description:</label>
-                                <input type="text" id="description" placeholder="Enter Task Description" rowa={3}
+                                <input type="text" id="description" placeholder="Enter Task Description" name="description"
                                     className="p-3 rounded-lg bg-gray-100 border border-gray-200 outline-none resize-none" />
                             </div>
 
@@ -33,8 +50,8 @@ export default function NewTask() {
                             <div className="flex flex-row gap-4">
 
                                 <div className="flex flex-col gap-1 flex-1">
-                                    <label htmlFor="status" className="font-semibold text-sm">Status</label>
-                                    <select name="status" id="status"
+                                    <label htmlFor="status" className="font-semibold text-sm">Status *</label>
+                                    <select name="status" id="status" required
                                         className="p-3 w-full bg-gray-100 rounded-lg border border-gray-200 outline-none">
                                         <option value="to-do">To Do</option>
                                         <option value="progress">Progress</option>
@@ -44,8 +61,8 @@ export default function NewTask() {
 
 
                                 <div className="flex flex-col gap-1 flex-1">
-                                    <label htmlFor="priority" className="font-semibold text-sm">Priority</label>
-                                    <select name="priority" id="priority"
+                                    <label htmlFor="priority" className="font-semibold text-sm">Priority *</label>
+                                    <select name="priority" id="priority" required
                                         className="p-3 w-full bg-gray-100 rounded-lg border border-gray-200 outline-none">
                                         <option value="low">Low</option>
                                         <option value="medium">Medium</option>
@@ -54,8 +71,8 @@ export default function NewTask() {
                                 </div>
 
                                 <div className="flex flex-col gap-1 flex-1">
-                                    <label htmlFor="date" className="font-semibold text-sm">Date</label>
-                                    <input type="date" id="date" name="date"
+                                    <label htmlFor="date" className="font-semibold text-sm">Date *</label>
+                                    <input type="date" id="date" name="date" required
                                         className="p-3 w-full bg-gray-100 rounded-lg border border-gray-200" />
                                 </div>
 
