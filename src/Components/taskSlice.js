@@ -5,6 +5,8 @@ const taskSlice = createSlice({
     initialState: {
         tasks: [],
         nextId: 1,
+        //Each object in tasks conatin
+        //nextId: 1
         // taskTitle: '',
         // description: '',
         // status: '',
@@ -21,7 +23,8 @@ const taskSlice = createSlice({
             state.tasks.push(newTask);
             state.nextId += 1;
 
-            console.log(newTask);  // Same data is being added if clicked addItem
+
+            // console.log("New Task Added: ", newTask);  // Same data is being added if clicked addItem
         }
     }
 });

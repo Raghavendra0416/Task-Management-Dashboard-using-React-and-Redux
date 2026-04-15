@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 import { addItem } from "./taskSlice";
+import { useRef } from "react";
 
 export default function NewTask() {
     const click = true;
     const dispatch = useDispatch();
+    const formRef = useRef(null);
 
     function handleClick(e) {
         e.preventDefault();
@@ -15,12 +17,15 @@ export default function NewTask() {
             date: e.target.date.value
         };
 
-        console.log("event: ", e);
-        console.log("task: ", e.target.title.value);
-        console.log("taskData: ", taskData);
+        // console.log("event: ", e);
+        // console.log("task: ", e.target.title.value);
+        // console.log("taskData: ", taskData);
 
         dispatch(addItem(taskData));
+
+        formRef.current.reset();
     }
+
     return (
         <>
             {click ? (
@@ -31,7 +36,7 @@ export default function NewTask() {
                         <h3 className="font-bold text-lg">Add New Task</h3>
 
                         {/* Form */}
-                        <form onSubmit={handleClick} className="flex flex-col gap-4">
+                        <form ref={formRef} onSubmit={handleClick} className="flex flex-col gap-4">
 
                             {/* Title || Description */}
                             <div className="flex flex-col gap-1">
