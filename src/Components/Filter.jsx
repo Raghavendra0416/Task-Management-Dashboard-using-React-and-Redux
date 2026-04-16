@@ -12,14 +12,15 @@ export default function Filter() {
     // console.log(activeFilter);
 
     const statusMap = {
-        "Active": "progress",
-        "Completed": "completed"
-    }
+        "Active": ["progress", "to-do"],
+        "Completed": ["completed"]
+    };
 
     const filteredTasks = data.filter((task) => {
-        if (activeFilter === "All Tasks") return true
-        return task.status === statusMap[activeFilter]
-    })
+        if (activeFilter === "All Tasks") return true;
+        return statusMap[activeFilter].includes(task.status);
+    });
+
     // const filteredTasks = data.filter((task) => {
     //     if (activeFilter === "Active") {
     //         return task.status === "progress";
@@ -30,7 +31,7 @@ export default function Filter() {
     // })
 
 
-    console.log("filteredTasks: ", filteredTasks);
+    // console.log("filteredTasks: ", filteredTasks);
 
 
     return (

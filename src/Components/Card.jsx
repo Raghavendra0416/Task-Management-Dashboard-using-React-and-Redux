@@ -1,6 +1,6 @@
 import { BsListTask } from 'react-icons/bs'
 import { FaRegClock, FaRegCheckCircle } from 'react-icons/fa'
-import { MdOutlineCheckBoxOutlineBlank } from 'react-icons/md'
+import { FiCircle } from "react-icons/fi";
 
 export default function Card() {
 
@@ -8,7 +8,7 @@ export default function Card() {
         { title: "Total Tasks", icon: BsListTask, iconClass: "text-blue-500" },
         { title: "In Progress", icon: FaRegClock, iconClass: "text-yellow-500" },
         { title: "Completed", icon: FaRegCheckCircle, iconClass: "text-green-500" },
-        { title: "To Do", icon: MdOutlineCheckBoxOutlineBlank, iconClass: "text-gray-400" },
+        { title: "To Do", icon: FiCircle, iconClass: "text-gray-400" },
     ];
 
     return (
