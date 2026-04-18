@@ -44,6 +44,3 @@ export default function Card() {
         </div >
     )
 }
-
-
-// Still need to add background color for icons.

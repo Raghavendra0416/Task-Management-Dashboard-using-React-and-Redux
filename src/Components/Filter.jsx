@@ -63,8 +63,3 @@ export default function Filter() {
         </>
     )
 }
-
-// Need to pass as props to tasks as below:
-// If Filter is All Tasks, no need for filtering,
-// If filter is active, then only show that are in progress
-// if filter is completed, then only show completed tasks.

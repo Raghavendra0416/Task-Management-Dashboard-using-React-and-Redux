@@ -2,7 +2,6 @@ import './CSS/App.css';
 import NavBar from './Components/NavBar';
 import Card from './Components/Card'
 import NewTask from './Components/NewTask';
-import Rough from './Components/Rough';
 import Filter from './Components/Filter';
 
 function App() {

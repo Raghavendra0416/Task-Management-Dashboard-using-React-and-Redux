@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
 const taskSlice = createSlice({
     name: "taskData",
     initialState: {
-        tasks: [],
-        nextId: 1,
+        tasks: savedTasks,
+        nextId: savedTasks.length > 0 ? savedTasks[savedTasks.length - 1].id + 1 : 1,
         //Each object in tasks conatin
         //nextId: 1
         // taskTitle: '',
@@ -22,6 +24,7 @@ const taskSlice = createSlice({
 
             state.tasks.push(newTask);
             state.nextId += 1;
+            localStorage.setItem("tasks", JSON.stringify(state.tasks));
             // console.log("New Task Added: ", newTask);  // Same data is being added if clicked addItem
         },
         updateItem: (state, action) => {
@@ -30,12 +33,14 @@ const taskSlice = createSlice({
 
             if (index !== -1) {
                 state.tasks[index] = action.payload  // mutates the actual task in the array
+                localStorage.setItem("tasks", JSON.stringify(state.tasks));
             }
         },
         deleteItem: (state, action) => {
-            const index = state.tasks.findIndex((task) => task.id === action.payload.id);
-
-            state.tasks.splice(index, 1);
+            // const index = state.tasks.findIndex((task) => task.id === action.payload.id);
+            // state.tasks.splice(index, 1);
+            state.tasks = state.tasks.filter((task) => task.id !== action.payload.id);
+            localStorage.setItem("tasks", JSON.stringify(state.tasks));
         }
     }
 });
