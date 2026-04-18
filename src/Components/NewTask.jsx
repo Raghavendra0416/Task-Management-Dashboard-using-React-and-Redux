@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 import { addItem } from "./taskSlice";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 
 export default function NewTask() {
-    const click = true;
+    const [newTask, setNewTask] = useState(null);
     const dispatch = useDispatch();
     const formRef = useRef(null);
 
@@ -22,13 +22,13 @@ export default function NewTask() {
         // console.log("taskData: ", taskData);
 
         dispatch(addItem(taskData));
-
         formRef.current.reset();
+        setNewTask(null);
     }
 
     return (
         <>
-            {click ? (
+            {newTask ? (
                 <div className="px-4 py-2">
 
                     <div className="bg-white rounded-xl p-6 shadow-xl border border-gray-400 flex-col gap-4">
@@ -40,7 +40,7 @@ export default function NewTask() {
 
                             {/* Title || Description */}
                             <div className="flex flex-col gap-1">
-                                <label htmlFor="title" className="font-semibold text-sm">Title *</label>
+                                <label htmlFor="title" className="font-semibold text-sm">Title: *</label>
                                 <input type="text" id="title" placeholder="Enter Task Title" name="title" required
                                     className="p-3 rounded-lg bg-gray-100 border border-gray-200 outline-none" />
                             </div>
@@ -55,7 +55,7 @@ export default function NewTask() {
                             <div className="flex flex-row gap-4">
 
                                 <div className="flex flex-col gap-1 flex-1">
-                                    <label htmlFor="status" className="font-semibold text-sm">Status *</label>
+                                    <label htmlFor="status" className="font-semibold text-sm">Status: *</label>
                                     <select name="status" id="status" required
                                         className="p-3 w-full bg-gray-100 rounded-lg border border-gray-200 outline-none">
                                         <option value="to-do">To Do</option>
@@ -66,7 +66,7 @@ export default function NewTask() {
 
 
                                 <div className="flex flex-col gap-1 flex-1">
-                                    <label htmlFor="priority" className="font-semibold text-sm">Priority *</label>
+                                    <label htmlFor="priority" className="font-semibold text-sm">Priority: *</label>
                                     <select name="priority" id="priority" required
                                         className="p-3 w-full bg-gray-100 rounded-lg border border-gray-200 outline-none">
                                         <option value="low">Low</option>
@@ -76,7 +76,7 @@ export default function NewTask() {
                                 </div>
 
                                 <div className="flex flex-col gap-1 flex-1">
-                                    <label htmlFor="date" className="font-semibold text-sm">Date *</label>
+                                    <label htmlFor="date" className="font-semibold text-sm">Date: *</label>
                                     <input type="date" id="date" name="date" required
                                         className="p-3 w-full bg-gray-100 rounded-lg border border-gray-200" />
                                 </div>
@@ -87,7 +87,7 @@ export default function NewTask() {
                                 <button type="submit" className="bg-black text-white rounded-xl p-3 w-4/5 font-semibold text-base" >
                                     + Add New Task
                                 </button>
-                                <button type="button"
+                                <button type="button" onClick={() => setNewTask(null)}
                                     className="bg-white text-black rounded-xl p-3 w-1/5 font-semibold text-base border border-gray-300">
                                     Cancel
                                 </button>
@@ -100,7 +100,8 @@ export default function NewTask() {
             ) : (
                 <div className="px-4 py-2">
                     <div className="bg-white rounded-xl p-4 shadow-xl border border-gray-400">
-                        <button className="bg-black text-white rounded-xl p-3 w-full font-semibold text-base">
+                        <button onClick={() => setNewTask(true)}
+                            className="bg-black text-white rounded-xl p-3 w-full font-semibold text-base">
                             + Add New Task
                         </button>
                     </div>

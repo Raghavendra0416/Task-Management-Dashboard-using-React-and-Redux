@@ -37,7 +37,7 @@ export default function Filter() {
     return (
         <>
             <div className="px-4 py-2">
-                <div className="bg-white rounded-xl p-4 shadow-xl border border-gray-400 flex items-center gap-3">
+                <div className="bg-white rounded-xl p-4 shadow-xl border border-gray-400 flex items-center gap-3 overflow-x-auto">
                     <BsFunnelFill className='text-xl text-gray-600' />
                     <p className="font-semibold text-gray-600">Filter:</p>
 
@@ -46,7 +46,7 @@ export default function Filter() {
                             key={filter}
                             type="button"
                             onClick={() => setActiveFilter(filter)}
-                            className={`rounded-xl px-4 py-2 font-semibold text-sm border
+                            className={`rounded-xl px-4 py-2 font-semibold text-sm border whitespace-nowrap
                             ${activeFilter === filter
                                     ? "bg-black text-white border-black"
                                     : "bg-white text-black border-gray-300"

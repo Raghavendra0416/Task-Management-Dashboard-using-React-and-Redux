@@ -2,14 +2,27 @@ import { BsListTask } from 'react-icons/bs'
 import { FaRegClock, FaRegCheckCircle } from 'react-icons/fa'
 import { FiCircle } from "react-icons/fi";
 
+import { useSelector } from "react-redux";
+
 export default function Card() {
+    const data = useSelector((state) => state.taskData.tasks);
+    const completionRate = data.length > 0
+        ? Math.round((len.comp / data.length) * 100) : 0
+
+    const len = {
+        prog: data.filter((task) => task.status === "progress").length,
+        comp: data.filter((task) => task.status === "completed").length,
+        toDo: data.filter((task) => task.status === "to-do").length,
+        allTasks: data.length,
+    }
 
     const cardsData = [
-        { title: "Total Tasks", icon: BsListTask, iconClass: "text-blue-500" },
-        { title: "In Progress", icon: FaRegClock, iconClass: "text-yellow-500" },
-        { title: "Completed", icon: FaRegCheckCircle, iconClass: "text-green-500" },
-        { title: "To Do", icon: FiCircle, iconClass: "text-gray-400" },
+        { title: "Total Tasks", icon: BsListTask, iconClass: "text-blue-500", len: len.allTasks },
+        { title: "In Progress", icon: FaRegClock, iconClass: "text-yellow-500", len: len.prog },
+        { title: "Completed", icon: FaRegCheckCircle, iconClass: "text-green-500", len: len.comp, rate: `${completionRate}% completion rate` },
+        { title: "To Do", icon: FiCircle, iconClass: "text-gray-400", len: len.toDo },
     ];
+
 
     return (
         <div className='flex flex-wrap justify-around gap-x-8 gap-y-4 p-4'>
@@ -22,7 +35,8 @@ export default function Card() {
                             <Icon className={`text-xl ${item.iconClass}`} />
                         </div>
 
-                        <p className="text-2xl font-bold text-gray-800">3</p>
+                        <p className="text-2xl font-bold text-gray-800">{item.len}</p>
+                        {item.rate && <p className="text-xs text-gray-400">{item.rate}</p>}
                     </div>
                 )
             })
