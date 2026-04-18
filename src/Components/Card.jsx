@@ -6,8 +6,6 @@ import { useSelector } from "react-redux";
 
 export default function Card() {
     const data = useSelector((state) => state.taskData.tasks);
-    const completionRate = data.length > 0
-        ? Math.round((len.comp / data.length) * 100) : 0
 
     const len = {
         prog: data.filter((task) => task.status === "progress").length,
@@ -15,6 +13,9 @@ export default function Card() {
         toDo: data.filter((task) => task.status === "to-do").length,
         allTasks: data.length,
     }
+
+    const completionRate = data.length > 0
+        ? Math.round((len.comp / data.length) * 100) : 0
 
     const cardsData = [
         { title: "Total Tasks", icon: BsListTask, iconClass: "text-blue-500", len: len.allTasks },
